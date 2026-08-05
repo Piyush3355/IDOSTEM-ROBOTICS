@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIY Robotics Kits Store — IDOSTEM LABS</title>
+  <meta name="description" content="Shop DIY STEM Robotics Kits for Kids & Students. RoboCars, Drones, 6-DOF Robotic Arms, and IoT Suites with HD Video Lessons & Pan-India Free Delivery.">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-dot"></div>
+        IDO<span>STEM</span> Labs
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Kits & Products</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="page-hero" style="position:relative;overflow:hidden;">
+    <canvas id="wave-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.55;"></canvas>
+    <div class="hero-overlay" style="z-index:1;"></div>
+    <div class="container" style="position:relative;z-index:2;">
+      <span class="section-tag" data-reveal="fade-down">SCHOOL &amp; COLLEGE ROBOTICS STORE</span>
+      <h1 data-reveal="fade-up" data-delay="100">Robotics Kits &amp; <span class="gradient-text">STEM Hardware</span></h1>
+      <p data-reveal="fade-up" data-delay="250">Arduino kits, robo cars, RC cars, drones, robot arms &amp; individual parts — everything schools and colleges need to start building real robots.</p>
+    </div>
+  </section>
+  <script>
+  (function(){
+    const c=document.getElementById('wave-canvas');
+    if(!c)return;
+    const ctx=c.getContext('2d');
+    let W,H,t=0;
+    function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
+    resize();window.addEventListener('resize',resize);
+    const waves=[
+      {amp:38,freq:0.018,speed:0.022,y:0.55,colors:['#00f0ff','#7c3aed']},
+      {amp:28,freq:0.024,speed:0.030,y:0.62,colors:['#9333ea','#ec4899']},
+      {amp:20,freq:0.030,speed:0.018,y:0.70,colors:['#10b981','#00f0ff']},
+      {amp:14,freq:0.040,speed:0.038,y:0.77,colors:['#f43f5e','#f59e0b']},
+    ];
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      waves.forEach(w=>{
+        const baseY=H*w.y;
+        const g=ctx.createLinearGradient(0,0,W,0);
+        g.addColorStop(0,w.colors[0]+'99');
+        g.addColorStop(1,w.colors[1]+'99');
+        ctx.beginPath();
+        ctx.moveTo(0,H);
+        for(let x=0;x<=W;x+=2){
+          const y=baseY+Math.sin(x*w.freq+t*w.speed*60)*w.amp;
+          ctx.lineTo(x,y);
+        }
+        ctx.lineTo(W,H);ctx.closePath();
+        ctx.fillStyle=g;ctx.fill();
+      });
+      t+=0.016;requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+
+  <section>
+    <div class="container">
+      
+      <!-- PARENT GUARANTEE BANNER -->
+      <div class="parent-guarantee-banner" data-reveal="fade-down">
+        <div class="guarantee-item">
+          <div class="guarantee-icon">🚚</div>
+          <div class="guarantee-text">
+            <h4>Free Pan-India Delivery</h4>
+            <p>Dispatched in 24 hours</p>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon">📹</div>
+          <div class="guarantee-text">
+            <h4>Video Course Included</h4>
+            <p>Lifetime access link</p>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon">🛡️</div>
+          <div class="guarantee-text">
+            <h4>1-Year Hardware Warranty</h4>
+            <p>100% replacement guarantee</p>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon">⚡</div>
+          <div class="guarantee-text">
+            <h4>No Soldering Needed</h4>
+            <p>100% safe for kids</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTER TABS -->
+      <div class="filter-tabs" data-reveal="fade-up" data-delay="150" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:40px;">
+        <button class="filter-tab active age-pill" data-filter="all">All Kits</button>
+        <button class="filter-tab age-pill" data-filter="arduino">Arduino Kits</button>
+        <button class="filter-tab age-pill" data-filter="robo-car">Robo Cars</button>
+        <button class="filter-tab age-pill" data-filter="rc-car">RC Car Kits</button>
+        <button class="filter-tab age-pill" data-filter="drone">Drone Kits</button>
+        <button class="filter-tab age-pill" data-filter="robo-kit">Robot Kits</button>
+        <button class="filter-tab age-pill" data-filter="parts">Robotics Parts</button>
+      </div>
+
+      <div class="products-grid" id="products-grid"></div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container" data-reveal="zoom-in">
+      <h2>Need a <span class="gradient-text">Custom School Lab Kit</span>?</h2>
+      <p>We design custom robotics kit bundles tailored to your school's curriculum and student strength.</p>
+      <a href="contact.html" class="btn btn-primary">Request Custom Kit Quote →</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-dot"></div>
+            IDO<span>STEM</span> Labs
+          </a>
+          <p>Empowering schools, kids, and engineering students with world-class robotics education.</p>
+        </div>
+        <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Kits</h4><ul><li><a href="products.html">Arduino Kits</a></li><li><a href="products.html">Robo Cars</a></li><li><a href="products.html">Drone Kits</a></li><li><a href="products.html">RC Car Kits</a></li><li><a href="products.html">Robotics Parts</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:support@idostemlabs.com">support@idostemlabs.com</a></li><li><a href="tel:+919876543210">+91 98765 43210</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 IDOSTEM LABS. All rights reserved.</span>
+        <div class="footer-socials"><a href="#">📷</a><a href="#">▶</a><a href="#">in</a><a href="#">𝕏</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 🛒 GLOBAL INSTANT CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeCheckout()">✕</button>
+      
+      <div style="text-align:center;margin-bottom:24px;">
+        <span class="slide-tag">INSTANT 1-CLICK ORDER</span>
+        <h3 id="modal-kit-title" style="margin-top:6px;">RoboCar Pro Smart Autonomous Kit</h3>
+        <div style="font-size:1.6rem;font-weight:900;color:var(--accent-cyan);font-family:var(--font-mono);margin-top:4px;" id="modal-kit-price">₹2,999</div>
+        <p style="font-size:0.85rem;color:var(--accent-green);margin-top:2px;">✓ Free Express Delivery Pan-India • HD Video Course Included</p>
+      </div>
+
+      <form onsubmit="handleOrderSubmit(event)">
+        <div class="form-group">
+          <label for="parent-name">PARENT / STUDENT FULL NAME</label>
+          <input type="text" id="parent-name" placeholder="e.g. Ramesh Kumar" required>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-group">
+            <label for="parent-phone">WHATSAPP / PHONE</label>
+            <input type="tel" id="parent-phone" placeholder="+91 98765 43210" required>
+          </div>
+          <div class="form-group">
+            <label for="parent-pincode">PINCODE</label>
+            <input type="text" id="parent-pincode" placeholder="110001" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="parent-address">DELIVERY ADDRESS</label>
+          <input type="text" id="parent-address" placeholder="House No., Street, City, State" required>
+        </div>
+
+        <div class="form-group">
+          <label>SELECT PAYMENT METHOD</label>
+          <div class="payment-options">
+            <div class="payment-chip selected" onclick="selectPayment(this)">📱 UPI / GPay / PhonePe</div>
+            <div class="payment-chip" onclick="selectPayment(this)">💳 Card / Netbanking</div>
+            <div class="payment-chip" onclick="selectPayment(this)">💵 Cash on Delivery (COD)</div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-buy" style="width:100%;justify-content:center;padding:16px;font-size:1.1rem;margin-top:10px;">
+          🚀 Confirm & Complete Order →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
